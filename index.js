@@ -38,17 +38,17 @@ function runInquireStart() {
 
 // // In addition to `Employee`'s properties and methods, `Manager` will also have the following:
 
-// function managerInquirer() {
-//     const promptArray = [{
-//         type: "input",
-//         message: " What is your Manager office number?",
-//         name: "officeNumber"
-//     }];
+function managerInquirer() {
+    const promptArray = [{
+        type: "input",
+        message: " What is your Manager office number?",
+        name: "officeNumber"
+    }];
 
-//     return inquirer.prompt(promptArray);
-//     getRole()
-//     {
-//     return Manager
-//     }    
-// }
+    return inquirer.prompt(promptArray);
+    getRole()
+    {
+    return Manager
+    }    
+}
 
