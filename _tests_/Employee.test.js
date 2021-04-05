@@ -25,3 +25,12 @@ describe("Employee Class", () => {
   });
 });
 
+describe("Employee Class", () => {
+  describe("getId method", () => {
+    it("creates a ID for the employee class object", () => {
+      const testValue = 101;
+      const id = new Employee("Employee ID", testValue);    
+      expect(id.getId()).toBe(testValue);
+    });
+  });
+});
