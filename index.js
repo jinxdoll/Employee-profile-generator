@@ -7,7 +7,7 @@ const Intern = require("./lib/intern");
 const employee = new Employee();
 
 function runInquireStart() {
-    const promptArray = [
+    const questions = [
         {
         type: "input",
         message: "What is your name ?",
@@ -33,7 +33,7 @@ function runInquireStart() {
     }
 ]
         return runInquireStart
-        .prompt(promptArray);
+        .prompt(questions);
 }
 
 // // In addition to `Employee`'s properties and methods, `Manager` will also have the following:
