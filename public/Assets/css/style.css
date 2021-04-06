@@ -1,0 +1,19 @@
+.card-body-text {
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    color: blue;
+}
+.team {
+    font-size:medium;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:black;
+    justify-content: center;
+    flex: auto;
+    
+}
+
+.manager-card {
+    border: 10pt;
+    border-style: solid;
+    border-color: red;
+}
