@@ -87,3 +87,105 @@ const promptIntern = [
   },
 ];
 
+const promptAddEmployee = [
+  {
+    type: "input",
+    message:
+      "Would you like to add another employee to this team ? Choose 'Yes' to add another member. Choose 'No' to finish.",
+    choices: ["Yes", "No"],
+    name: "addEmployee",
+  },
+];
+
+const promptEmployeeType = [
+  {
+    type: "list",
+    name: "employeeType",
+    message:
+      "Please choose the employee's role type you would like to add. Choose from: Engineer or Intern. Or choose EXIT",
+    choices: ["Engineer", "Intern", "EXIT"],
+  },
+];
+
+function inquirerStart() {
+  inquirer.prompt(appStartQuestions).then((response) => {
+    if (response.startQuestions === "Yes") {
+      console.log("Please enter the Managers' information.");
+      handleManager();
+    } else {
+      console.log("Exiting Application");
+    }
+  });
+}
+
+function handleManager() {
+  inquirer.prompt(promptManager).then((response) => {
+    let name = response.managerName;
+    let id = response.managerId;
+    let email = response.managerEmail;
+    let officeNumber = response.officeNumber;
+
+    const manager = new Manager(name, id, email, officeNumber);
+    employeeArray.push(manager);
+    employeeID++;
+    console.log("Next we'll collect information on the other team members.");
+    nextEmployee();
+  });
+}
+
+function nextEmployee() {
+  inquirer.prompt(promptAddEmployee).then((choices) => {
+    if (choices.addEmployee === "Yes") {
+      console.log("response from line 138:");
+      inquirer.prompt(promptEmployeeType).then((choices) => {
+        switch (choices.employeeType) {
+          case "Engineer":
+            handleEngineer();
+            break;
+          case "Intern":
+            handleIntern();
+            break;
+          case "Exit":
+            console.log("Team is being built line 147");
+            renderHtml();
+            return;
+        }
+
+        if (choices.addEmployee === "Yes") {
+          console.log("Team is being created (line 152)");
+          renderHtml();
+          return;
+        }
+      });
+    }
+  });
+}
+
+function handleEngineer() {
+  inquirer.prompt(promptEngineer).then((response) => {
+    let name = response.engineerName;
+    let id = response.engineerId;
+    let email = response.engineerEmail;
+    let github = response.github;
+
+    const engineer = new Engineer(name, id, email, github);
+    employeeArray.push(engineer);
+    console.log(employeeArray);
+    nextEmployee();
+  });
+}
+
+function handleIntern() {
+  inquirer.prompt(promptIntern).then((response) => {
+    let name = response.internName;
+    let id = response.internId;
+    let email = response.internEmail;
+    let school = response.school;
+
+    const intern = new Intern(name, id, email, school);
+    employeeArray.push(intern);
+    console.log(employeeArray);
+    nextEmployee();
+  });
+}
+
