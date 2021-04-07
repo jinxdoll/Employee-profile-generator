@@ -189,3 +189,72 @@ function handleIntern() {
   });
 }
 
+function handleEmployeeType() {
+  inquirer.prompt(promptEmployeeType).then((response) => {
+    if (response.employeeType === "Manager")
+      () => {
+        inquirer.prompt(promptManager).then((response) => {
+          let name = response.managerName;
+          let id = response.managerId;
+          let email = response.managerEmail;
+          let officeNumber = response.OfficeNumber;
+
+          const manager = new Manager(name, id, email, officeNumber);
+
+          employeeArray.push(manager);
+          addEmployee();
+        });
+      };
+    else if (response.employeeType === "Engineer")
+      () => {
+        inquirer.prompt(promptEngineer).then((response) => {
+          let name = response.engineerName;
+          let id = response.engineerId;
+          let email = response.engineerEmail;
+          let github = response.engineerGithub;
+
+          let engineer = new Engineer(name, id, email, github);
+
+          employeeArray.push(engineer);
+          addEmployee();
+        });
+      };
+    else if (response.employeeType === "Intern") {
+      promptIntern().then((response) => {
+        let name = response.internName;
+        let id = response.internId;
+        let email = response.internEmail;
+        let school = response.internSchool;
+
+        let intern = new Intern();
+        employees.push(intern);
+        addEmployee();
+      });
+    }
+  });
+}
+
+// function promptAddType() {
+//
+//     {
+//       type: "input",
+//       message: "Is this employee a Manager, Engineer or Intern ?",
+//       choices: ["Manager", "Engineer", "Intern"],
+//       name: "addType",
+//     },
+//   ]);
+// }
+
+function addEmployee() {
+  if (promptAddEmployee.addEmployee === "Yes") {
+    inquirer.prompt(promptEmployeeType).then((employeeType) => {
+      handleEmployeeType();
+    });
+  }
+  if (promptAddEmployee.addEmployee === "No") {
+    renderHtml(employeeArray);
+    return;
+  }
+  console.log("creating your team (line 261)");
+}
+
